@@ -11,7 +11,7 @@ process multiqc {
     val featurecounts
 
   when:
-    ( ! file("/workdir/multiqc_output/multiqc_report.html").exists() ) 
+    ( ! file("${params.project_folder}/multiqc_output/multiqc_report.html").exists() ) 
   
   script:
   """
