@@ -61,7 +61,9 @@ process upload_paths {
   """
     cd ${params.project_folder}/multiqc_output
     rm -rf upload.txt
-    echo "multiqc \$(readlink -f multiqc_report.html)" >>  upload.txt
+    echo "multiqc \$(readlink -f multiqc_report.html)" >>  upload.txt_
+    uniq upload.txt_ upload.txt 
+    rm upload.txt_
   """
 }
 
