@@ -53,9 +53,27 @@ process multiqc {
   """
 }
 
+
+process upload_paths {
+  stageInMode 'symlink'
+  stageOutMode 'move'
+
+  script:
+    """
+    cd ${params.project_folder}/multiqc_output
+    rm -rf upload.txt
+    echo "multiqc $(readlink -f multiqc_report.html)" >>  upload.txt
+    """
+}
+
 workflow images {
   main:
     get_images()
+}
+
+workflow upload {
+  main:
+    upload_paths()
 }
 
 workflow {
