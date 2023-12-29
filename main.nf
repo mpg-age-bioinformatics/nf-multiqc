@@ -79,17 +79,20 @@ workflow upload {
 
 workflow {
   if ( 'fastqc_output' in params.keySet() ) {
-    fastqc=${params.fastqc_output}
+    // fastqc=${params.fastqc_output}
+    fastqc=params["fastqc_output"]
   } else {
     fastqc="fastqc_output"
   }
   if ( 'mapping_output' in params.keySet() ) {
-    mapping=${params.mapping_output}
+    // mapping=${params.mapping_output}
+    mapping=params["mapping_output"]
   } else {
     mapping="kallisto_output"
   }
   if ( 'featurecounts' in params.keySet() ) {
-    featurecounts=${params.featurecounts}
+    // featurecounts=${params.featurecounts}
+    eaturecounts=params["featurecounts"]
   } else {
     featurecounts="featureCounts_output"
   }
