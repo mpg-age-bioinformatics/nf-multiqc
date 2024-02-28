@@ -49,7 +49,12 @@ process multiqc {
   script:
   """
     mkdir -p /workdir/multiqc_output
-    multiqc /workdir/${fastqc} /workdir/${mapping} /workdir/${featurecounts} -f -o /workdir/multiqc_output
+
+    if [ ${fastqc} != "" ] ; then fastqc_folder=/workdir/${fastqc} ; else fastqc_folder="" ; fi
+    if [ ${mapping} != "" ] ; then mapping_folder=/workdir/${mapping} ; else mapping_folder="" ; fi
+    if [ ${featurecounts} != "" ] ; then featureCounts_folder=/workdir/${featurecounts} ; else featureCounts_folder="" ; fi
+
+    multiqc \${fastqc_folder} \${mapping_folder} \${featureCounts_folder} -f -o /workdir/multiqc_output
   """
 }
 
@@ -92,7 +97,7 @@ workflow {
   }
   if ( 'featurecounts' in params.keySet() ) {
     // featurecounts=${params.featurecounts}
-    eaturecounts=params["featurecounts"]
+    featurecounts=params["featurecounts"]
   } else {
     featurecounts="featureCounts_output"
   }
