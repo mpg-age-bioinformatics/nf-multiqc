@@ -3,9 +3,9 @@
 Running the workflow:
 ```
 RELEASE=1.0.0
-PROFILE=local
-nextflow run mpg-age-bioinformatics/nf-multiqc -r ${RELEASE} -params-file params.json -entry images -profile ${PROFILE} && \
-nextflow run mpg-age-bioinformatics/nf-multiqc -r ${RELEASE} -params-file params.json -profile ${PROFILE}
+PROFILE=standard
+nextflow run mpg-age-bioinformatics/nf-multiqc -r ${RELEASE} -params-file params.json -entry images -profile ${PROFILE} --user "$(id -u):$(id -g)" && \
+nextflow run mpg-age-bioinformatics/nf-multiqc -r ${RELEASE} -params-file params.json -profile ${PROFILE} --user "$(id -u):$(id -g)"
 ```
 
 ## Contributing
